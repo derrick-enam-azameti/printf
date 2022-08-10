@@ -1,4 +1,6 @@
+#include "main.h"
 #include <stdio.h>
+
 int hex_check(int, char);
 
 /**
@@ -42,13 +44,11 @@ int print_binary(va_list list)
 	return (len);
 }
 
-
 /**
  * print_octal - Prints the numeric representation of a number in octal base
  * @list: List of all the arguments passed to the program
  * Return: Number of symbols printed to stdout
  */
-
 int print_octal(va_list list)
 {
 	unsigned int num;
@@ -56,16 +56,13 @@ int print_octal(va_list list)
 	char *octal_rep;
 	char *rev_str;
 
-
 	num = va_arg(list, unsigned int);
-
 
 	if (num == 0)
 		return (_write_char('0'));
 	if (num < 1)
 		return (-1);
 	len = base_len(num, 8);
-
 	octal_rep = malloc(sizeof(char) * len + 1);
 	if (octal_rep == NULL)
 		return (-1);
@@ -73,12 +70,12 @@ int print_octal(va_list list)
 	{
 		octal_rep[len] = (num % 8) + 48;
 		num = num / 8;
-
 	}
 	octal_rep[len] = '\0';
 	rev_str = rev_string(octal_rep);
 	if (rev_str == NULL)
 		return (-1);
+
 	write_base(rev_str);
 	free(octal_rep);
 	free(rev_str);
@@ -131,14 +128,15 @@ int print_hex(va_list list)
 	return (len);
 }
 
+
 /**
- * print_heX - prints representation of a decimal number on base 16 uppercase
- * @list: args
- * Return: number of characters printed
+ * print_heX - Prints a representation of a decimal number on base16 Uppercase
+ * @list: List of the arguments passed to the function
+ * Return: Number of characters printed
  */
 int print_heX(va_list list)
 {
-	unsinged int num;
+	unsigned int num;
 	int len;
 	int rem_num;
 	char *hex_rep;
@@ -177,10 +175,10 @@ int print_heX(va_list list)
 }
 
 /**
- * hex_check - checks which hex func is calling it
- * @num: number to convert to letter
- * @x: the hex func calling it
- * Return: ASCII value for the letter
+ * hex_check - Checks which hex function is calling it
+ * @num: Number to convert into letter
+ * @x: Tells which hex function is calling it
+ * Return: Ascii value for a letter
  */
 int hex_check(int num, char x)
 {
